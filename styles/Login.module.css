@@ -1,202 +1,354 @@
+/* styles/Login.module.css */
+
+/* General container for all pages */
 .container {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  padding: 40px 20px;
   min-height: 100vh;
+  background-color: #171923;
+  color: #ffffff;
 }
 
+/* Card container (updated) */
 .card {
-  background-color: #2a2f3b;
-  padding: 24px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  background-color: #1e2235;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 400px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.icon {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 16px;
-}
-
-.iconCircle {
-  background-color: #7b3fe4;
-  border-radius: 50%;
-  width: 50px;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title {
-  text-align: center;
-  color: #ffffff;
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 8px;
-}
-
-.subtitle {
-  text-align: center;
-  color: #a0a5b0;
-  font-size: 14px;
-  margin-bottom: 24px;
-}
-
-.formGroup {
-  margin-bottom: 16px;
-}
-
-.label {
-  display: block;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-.input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #4a4f5b;
-  border-radius: 5px;
-  background-color: #3a3f4b;
-  color: #ffffff;
-  font-size: 14px;
-  box-sizing: border-box;
-}
-
-.input::placeholder {
-  color: #a0a5b0;
-}
-
-.options {
+/* Dashboard header with logo and logout */
+.dashboardHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.checkbox {
+.headerLeft,
+.headerRight {
   display: flex;
   align-items: center;
+}
+
+/* Flex container for spacing between dashboard elements */
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Title for dashboard */
+.title {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Section titles */
+.sectionTitle {
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* Action bar with search and add button */
+.actionBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Search container and input */
+.searchContainer {
+  position: relative;
+  width: 50%;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 10px 12px 10px 36px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   font-size: 14px;
+  transition: all 0.2s ease;
 }
 
-.checkbox input {
-  margin-right: 8px;
+.searchInput:focus {
+  outline: none;
+  border-color: #9061f9;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
 }
 
-.link {
-  color: #7b3fe4;
-  text-decoration: none;
-  font-size: 14px;
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.4);
 }
 
-.link:hover {
-  text-decoration: underline;
-}
-
-.button {
-  width: 100%;
-  padding: 12px;
+/* Add button */
+.addButton {
+  display: flex;
+  align-items: center;
+  padding: 10px 16px;
   background-color: #7b3fe4;
   color: #ffffff;
   border: none;
-  border-radius: 5px;
-  font-size: 16px;
+  border-radius: 8px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-}
-
-.button:hover {
-  background-color: #9b6bff;
-}
-
-.footer {
-  text-align: center;
-  color: #a0a5b0;
-  font-size: 14px;
-  margin-top: 24px;
-}
-
-.footerLink {
-  color: #7b3fe4;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.footerLink:hover {
-  text-decoration: underline;
+.addButton:hover {
+  background-color: #9061f9;
+  transform: translateY(-1px);
 }
 
-.error {
-  color: red;
-  text-align: center;
-  margin-bottom: 16px;
-}
-/* Existing styles remain unchanged, adding new styles below */
-
-/* Box for Add New Password section */
-.addPasswordBox {
-  background-color: #3a3f4b; /* Darker gray-blue for Add Password box */
-  padding: 20px;
+/* Logout button */
+.logoutButton {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  background-color: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* Box for Your Passwords section */
+.logoutButton:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* Saved Passwords box */
 .savedPasswordsBox {
-  background-color: #2a2f3b; /* Slightly lighter gray for Saved Passwords box */
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  background-color: #262b3d;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Table styles for saved passwords */
+/* Table container with overflow */
+.tableContainer {
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+/* Password table */
 .passwordTable {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 15px;
 }
 
 .passwordTable th,
 .passwordTable td {
-  padding: 12px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   text-align: left;
-  color: #ffffff;
-  border-bottom: 1px solid #4a4f5b;
 }
 
 .passwordTable th {
-  background-color: #3a3f4b;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
   font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .passwordTable td {
-  font-size: 14px;
+  color: #ffffff;
+}
+
+.passwordTable tr:last-child td {
+  border-bottom: none;
 }
 
 .passwordTable tr:hover {
-  background-color: #3a3f4b;
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* Navigation buttons (e.g., "Go to Add Password", "Back to Dashboard") */
-.navButton {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: #4a4f5b; /* Gray for navigation buttons */
-  color: #ffffff;
-  text-decoration: none;
-  border-radius: 5px;
+/* Website cell with favicon */
+.websiteCell {
+  display: flex;
+  align-items: center;
+}
+
+.favicon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background-color: #7b3fe4;
+  color: white;
+  border-radius: 6px;
+  margin-right: 12px;
+  font-weight: bold;
   font-size: 14px;
-  margin: 10px 0;
 }
 
-.navButton:hover {
-  background-color: #5a5f6b;
+/* Password cell with toggle */
+.passwordCell {
+  display: flex;
+  align-items: center;
+  font-family: monospace;
+  letter-spacing: 1px;
+}
+
+.visibilityToggle {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.visibilityToggle:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Action buttons */
+.actionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionButton:hover {
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Empty state when no passwords */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.emptyStateButton {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  padding: 10px 16px;
+  background-color: #7b3fe4;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.emptyStateButton:hover {
+  background-color: #9061f9;
+}
+
+/* Security tips box */
+.securityInfoBox {
+  background-color: #262b3d;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.securityHeader {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.securityHeader h4 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.securityTips {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.securityTips li {
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Error messages */
+.error {
+  color: #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.1);
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  border-left: 4px solid #ff4d4d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;
+  }
+
+  .actionBar {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .searchContainer {
+    width: 100%;
+  }
+
+  .addButton {
+    width: 100%;
+    justify-content: center;
+  }
 }
