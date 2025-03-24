@@ -29,7 +29,7 @@ function Register() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={styles.card} style={{ maxWidth: '400px' }}>
         <div className={styles.icon}>
           <div className={styles.iconCircle}>
             <svg
