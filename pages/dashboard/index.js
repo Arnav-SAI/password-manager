@@ -3,210 +3,199 @@ import styles from '../../styles/Login.module.css';
 import { supabase } from '../../utils/supabase';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Eye, EyeOff, LogOut, Plus, Search, Shield, ExternalLink } from 'lucide-react';
 
 function Dashboard() {
   const [passwords, setPasswords] = useState([]);
-  const [error, setError] = useState('');
-  const [searchTerm, setSearchTerm] = useState('');
-  const [visiblePasswords, setVisiblePasswords] = useState({});
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
-  // Fetch passwords from Supabase
   useEffect(() => {
-    const fetchPasswords = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!session) {
-        router.push('/');
-        return;
-      }
-
-      const { data, error } = await supabase
-        .from('passwords')
-        .select('*')
-        .eq('user_id', session.user.id);
-
-      if (error) {
-        setError('Could not fetch passwords. Please try again later.');
-        return;
-      }
-
-      setPasswords(data || []);
-    };
-
     fetchPasswords();
-  }, [router]);
+  }, []);
+
+  const fetchPasswords = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      router.push('/');
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from('passwords')
+      .select('*')
+      .eq('user_id', session.user.id);
+
+    if (error) {
+      console.error('Error fetching passwords:', error);
+    } else {
+      setPasswords(data);
+    }
+    setLoading(false);
+  };
+
+  const handleDelete = async (id) => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      router.push('/');
+      return;
+    }
+
+    const { error } = await supabase
+      .from('passwords')
+      .delete()
+      .eq('id', id)
+      .eq('user_id', session.user.id);
+
+    if (error) {
+      console.error('Error deleting password:', error);
+    } else {
+      setPasswords(passwords.filter((password) => password.id !== id));
+    }
+  };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     router.push('/');
   };
 
-  const togglePasswordVisibility = (id) => {
-    setVisiblePasswords((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const filteredPasswords = passwords.filter(
-    (pass) =>
-      pass.website.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      pass.username.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-  const navigateToAdd = () => {
-    router.push('/dashboard/add');
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={styles.container}>
-      <div className={styles.card}>
+      <div className={styles.card} style={{ maxWidth: '1200px' }}>
         <div className={styles.dashboardHeader}>
           <div className={styles.headerLeft}>
-            <h2 className={styles.title}>
-              <Shield className="mr-2 text-purple-400" size={28} />
-              SecurePass
-            </h2>
+            <h2 className={styles.title}>Password Manager</h2>
           </div>
           <div className={styles.headerRight}>
-            <button
-              onClick={handleLogout}
-              className={styles.logoutButton}
-            >
-              <LogOut size={16} className="mr-2" /> Logout
+            <button onClick={handleLogout} className={styles.logoutButton}>
+              Logout
             </button>
           </div>
         </div>
 
         <div className={styles.dashboardContent}>
-          <div className={styles.actionBar}>
-            <div className={styles.searchContainer}>
-              <Search size={18} className="text-gray-400 absolute left-3 top-2.5" />
-              <input
-                type="text"
-                placeholder="Search passwords..."
-                className={styles.searchInput}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
+          <div>
+            <div className={styles.actionBar}>
+              <Link href="/dashboard/add" className={styles.addButton}>
+                Add Password
+              </Link>
             </div>
-            <button
-              onClick={navigateToAdd}
-              className={styles.addButton}
-            >
-              <Plus size={16} className="mr-2" /> Add Password
-            </button>
-          </div>
 
-          <div className={styles.savedPasswordsBox}>
-            <h3 className={styles.sectionTitle}>Your Secure Passwords</h3>
-            {error && <p className={styles.error}>{error}</p>}
-
-            {passwords.length === 0 ? (
-              <div className={styles.emptyState}>
-                <Shield size={48} className="text-gray-500 mb-4" />
-                <p>No passwords saved yet.</p>
-                <p className="text-sm text-gray-400 mt-2">Add your first password to get started</p>
-                <button
-                  onClick={navigateToAdd}
-                  className={styles.emptyStateButton}
-                >
-                  <Plus size={16} className="mr-2" /> Add Your First Password
-                </button>
-              </div>
-            ) : (
-              <>
-                {filteredPasswords.length === 0 ? (
-                  <p className="text-center py-6 text-gray-400">No results found for "{searchTerm}"</p>
-                ) : (
-                  <div className={styles.tableContainer}>
-                    <table className={styles.passwordTable}>
-                      <thead>
-                        <tr>
-                          <th>Website</th>
-                          <th>Username</th>
-                          <th>Password</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {filteredPasswords.map((pass) => (
-                          <tr key={pass.id}>
-                            <td className={styles.websiteCell}>
+            <div className={styles.savedPasswordsBox}>
+              <h3 className={styles.sectionTitle}>Saved Passwords</h3>
+              {passwords.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <p>No passwords saved yet.</p>
+                  <Link href="/dashboard/add" className={styles.emptyStateButton}>
+                    Add Your First Password
+                  </Link>
+                </div>
+              ) : (
+                <div className={styles.tableContainer}>
+                  <table className={styles.passwordTable}>
+                    <thead>
+                      <tr>
+                        <th>Website</th>
+                        <th>Username</th>
+                        <th>Password</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {passwords.map((password) => (
+                        <tr key={password.id}>
+                          <td>
+                            <div className={styles.websiteCell}>
                               <span className={styles.favicon}>
-                                {pass.website.charAt(0).toUpperCase()}
+                                {password.website.charAt(0).toUpperCase()}
                               </span>
-                              {pass.website}
-                            </td>
-                            <td>{pass.username}</td>
-                            <td className={styles.passwordCell}>
-                              {visiblePasswords[pass.id] ? pass.password : '••••••••••'}
-                              <button
-                                className={styles.visibilityToggle}
-                                onClick={() => togglePasswordVisibility(pass.id)}
-                              >
-                                {visiblePasswords[pass.id] ? (
-                                  <EyeOff size={16} />
-                                ) : (
-                                  <Eye size={16} />
-                                )}
-                              </button>
-                            </td>
-                            <td className={styles.actionButtons}>
-                              <button
-                                className={styles.actionButton}
-                                title="Copy Password"
-                                onClick={() => {
-                                  navigator.clipboard.writeText(pass.password);
-                                  // In a real app, add a toast notification here
-                                }}
-                              >
+                              {password.website}
+                            </div>
+                          </td>
+                          <td>{password.username}</td>
+                          <td>
+                            <div className={styles.passwordCell}>
+                              ••••••••
+                              <button className={styles.visibilityToggle}>
                                 <svg
+                                  xmlns="http://www.w3.org/2000/svg"
                                   width="16"
                                   height="16"
                                   viewBox="0 0 24 24"
                                   fill="none"
                                   stroke="currentColor"
                                   strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
                                 >
-                                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
-                                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                  <circle cx="12" cy="12" r="3"></circle>
                                 </svg>
                               </button>
-                              <a
-                                href={
-                                  pass.website.startsWith('http')
-                                    ? pass.website
-                                    : `https://${pass.website}`
-                                }
-                                target="_blank"
-                                rel="noopener noreferrer"
+                            </div>
+                          </td>
+                          <td>
+                            <div className={styles.actionButtons}>
+                              <button className={styles.actionButton}>
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+                                  <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                </svg>
+                              </button>
+                              <button
+                                onClick={() => handleDelete(password.id)}
                                 className={styles.actionButton}
-                                title="Visit Website"
                               >
-                                <ExternalLink size={16} />
-                              </a>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </>
-            )}
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="16"
+                                  height="16"
+                                  viewBox="0 0 24 24"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                >
+                                  <polyline points="3 6 5 6 21 6"></polyline>
+                                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                                </svg>
+                              </button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
+            </div>
           </div>
 
           <div className={styles.securityInfoBox}>
             <div className={styles.securityHeader}>
-              <Shield size={18} className="text-purple-400 mr-2" />
-              <h4>Password Security Tips</h4>
+              <h4>Security Tips</h4>
             </div>
             <ul className={styles.securityTips}>
-              <li>Use a unique password for each website</li>
-              <li>Include numbers, symbols, and mixed case letters</li>
-              <li>Avoid using personal information in your passwords</li>
+              <li>Use a unique password for each account.</li>
+              <li>Include a mix of letters, numbers, and symbols.</li>
+              <li>Avoid using personal information in passwords.</li>
+              <li>Enable two-factor authentication where possible.</li>
             </ul>
           </div>
         </div>
