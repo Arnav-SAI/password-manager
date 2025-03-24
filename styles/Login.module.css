@@ -4,21 +4,21 @@
 .container {
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   padding: 40px 20px;
   min-height: 100vh;
-  background-color: #171923; /* Updated to match new design */
+  background-color: #171923;
   color: #ffffff;
 }
 
 /* Card container */
 .card {
-  background-color: #1e2235; /* Updated to match new design */
+  background-color: #1e2235;
   padding: 30px;
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
   width: 100%;
-  max-width: 1200px; /* Wider for dashboard, suitable for other pages */
+  max-width: 400px; /* Default for login, register, and /dashboard/add */
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -45,7 +45,7 @@
   gap: 24px;
 }
 
-/* Title for dashboard */
+/* Title for dashboard and login/register */
 .title {
   color: #ffffff;
   font-size: 28px;
@@ -53,6 +53,7 @@
   margin: 0;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 /* Section titles */
@@ -333,28 +334,7 @@
   border-left: 4px solid #ff4d4d;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .card {
-    padding: 20px;
-  }
-
-  .actionBar {
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .searchContainer {
-    width: 100%;
-  }
-
-  .addButton {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* Existing styles for login/register and /dashboard/add (preserved) */
+/* Existing styles for login/register and /dashboard/add */
 .icon {
   display: flex;
   justify-content: center;
@@ -486,4 +466,216 @@
   border-radius: 8px;
   margin-bottom: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 768px) {
+  /* General container adjustments */
+  .container {
+    padding: 20px 10px; /* Reduce padding on mobile */
+  }
+
+  /* Card adjustments */
+  .card {
+    padding: 20px; /* Reduce padding inside the card */
+    border-radius: 12px; /* Slightly smaller border radius */
+    max-width: 100%; /* Ensure it takes full width on very small screens */
+    margin: 0 10px; /* Add small margin on the sides */
+  }
+
+  /* Title adjustments */
+  .title {
+    font-size: 24px; /* Slightly smaller title */
+  }
+
+  /* Subtitle adjustments */
+  .subtitle {
+    font-size: 12px; /* Smaller subtitle */
+    margin-bottom: 16px;
+  }
+
+  /* Form group adjustments */
+  .formGroup {
+    margin-bottom: 12px; /* Reduce spacing between form fields */
+  }
+
+  /* Label adjustments */
+  .label {
+    font-size: 13px; /* Smaller label text */
+  }
+
+  /* Input adjustments */
+  .input {
+    padding: 8px 10px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+    border-radius: 4px;
+  }
+
+  /* Options (checkbox and link) adjustments */
+  .options {
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: flex-start;
+    gap: 12px; /* Add spacing between checkbox and link */
+    margin-bottom: 16px;
+  }
+
+  .checkbox,
+  .link {
+    font-size: 13px; /* Smaller text */
+    padding: 8px 0; /* Add padding for better touch target */
+  }
+
+  /* Button adjustments */
+  .button {
+    padding: 10px; /* Slightly smaller padding */
+    font-size: 14px; /* Smaller font size */
+    border-radius: 4px;
+  }
+
+  /* Footer adjustments */
+  .footer {
+    font-size: 12px; /* Smaller footer text */
+    margin-top: 16px;
+  }
+
+  /* Dashboard-specific adjustments */
+  .dashboardHeader {
+    flex-direction: column; /* Stack header elements vertically */
+    gap: 12px; /* Add spacing between logo and logout button */
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+  }
+
+  .actionBar {
+    flex-direction: column; /* Already set, but confirming */
+    gap: 12px; /* Already set, but confirming */
+  }
+
+  .searchContainer {
+    width: 100%; /* Already set, but confirming */
+  }
+
+  .searchInput {
+    padding: 8px 10px 8px 32px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+  }
+
+  .searchInput + svg {
+    top: 8px; /* Adjust search icon position */
+    left: 8px;
+  }
+
+  .addButton {
+    width: 100%; /* Already set, but confirming */
+    justify-content: center; /* Already set, but confirming */
+    padding: 10px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+  }
+
+  .logoutButton {
+    padding: 8px 12px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+  }
+
+  .sectionTitle {
+    font-size: 18px; /* Smaller section title */
+    margin-bottom: 16px;
+  }
+
+  .savedPasswordsBox {
+    padding: 16px; /* Reduce padding */
+  }
+
+  .passwordTable {
+    font-size: 13px; /* Smaller font size for table */
+  }
+
+  .passwordTable th,
+  .passwordTable td {
+    padding: 10px; /* Reduce padding in table cells */
+  }
+
+  .favicon {
+    width: 24px; /* Smaller favicon */
+    height: 24px;
+    font-size: 12px;
+    margin-right: 8px;
+  }
+
+  .visibilityToggle {
+    padding: 4px; /* Ensure touch target is large enough */
+  }
+
+  .actionButton {
+    padding: 6px; /* Ensure touch target is large enough */
+  }
+
+  .emptyState {
+    padding: 20px 10px; /* Reduce padding */
+  }
+
+  .emptyStateButton {
+    padding: 8px 12px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+  }
+
+  .securityInfoBox {
+    padding: 16px; /* Reduce padding */
+  }
+
+  .securityHeader h4 {
+    font-size: 16px; /* Smaller header */
+  }
+
+  .securityTips li {
+    font-size: 13px; /* Smaller text */
+    margin-bottom: 6px;
+  }
+
+  /* Add Password page adjustments */
+  .navButton {
+    padding: 8px 16px; /* Slightly smaller padding */
+    font-size: 13px; /* Smaller font size */
+    margin: 8px 0; /* Adjust margin */
+  }
+
+  .addPasswordBox {
+    padding: 16px; /* Reduce padding */
+  }
+}
+
+/* Additional media query for very small screens (e.g., < 480px) */
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 5px; /* Further reduce padding */
+  }
+
+  .card {
+    padding: 15px; /* Further reduce padding */
+    margin: 0 5px;
+  }
+
+  .title {
+    font-size: 20px; /* Even smaller title */
+  }
+
+  .subtitle {
+    font-size: 11px; /* Even smaller subtitle */
+  }
+
+  .input {
+    padding: 6px 8px; /* Even smaller padding */
+    font-size: 12px; /* Even smaller font size */
+  }
+
+  .button {
+    padding: 8px; /* Even smaller padding */
+    font-size: 13px; /* Even smaller font size */
+  }
+
+  .passwordTable th,
+  .passwordTable td {
+    padding: 8px; /* Further reduce padding */
+    font-size: 12px; /* Even smaller font size */
+  }
 }
