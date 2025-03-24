@@ -1,0 +1,202 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.card {
+  background-color: #2a2f3b;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.iconCircle {
+  background-color: #7b3fe4;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  text-align: center;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #a0a5b0;
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+
+.formGroup {
+  margin-bottom: 16px;
+}
+
+.label {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #4a4f5b;
+  border-radius: 5px;
+  background-color: #3a3f4b;
+  color: #ffffff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #a0a5b0;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.checkbox input {
+  margin-right: 8px;
+}
+
+.link {
+  color: #7b3fe4;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  background-color: #7b3fe4;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #9b6bff;
+}
+
+.footer {
+  text-align: center;
+  color: #a0a5b0;
+  font-size: 14px;
+  margin-top: 24px;
+}
+
+.footerLink {
+  color: #7b3fe4;
+  text-decoration: none;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}
+
+.error {
+  color: red;
+  text-align: center;
+  margin-bottom: 16px;
+}
+/* Existing styles remain unchanged, adding new styles below */
+
+/* Box for Add New Password section */
+.addPasswordBox {
+  background-color: #3a3f4b; /* Darker gray-blue for Add Password box */
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Box for Your Passwords section */
+.savedPasswordsBox {
+  background-color: #2a2f3b; /* Slightly lighter gray for Saved Passwords box */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Table styles for saved passwords */
+.passwordTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.passwordTable th,
+.passwordTable td {
+  padding: 12px;
+  text-align: left;
+  color: #ffffff;
+  border-bottom: 1px solid #4a4f5b;
+}
+
+.passwordTable th {
+  background-color: #3a3f4b;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.passwordTable td {
+  font-size: 14px;
+}
+
+.passwordTable tr:hover {
+  background-color: #3a3f4b;
+}
+
+/* Navigation buttons (e.g., "Go to Add Password", "Back to Dashboard") */
+.navButton {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #4a4f5b; /* Gray for navigation buttons */
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+.navButton:hover {
+  background-color: #5a5f6b;
+}
