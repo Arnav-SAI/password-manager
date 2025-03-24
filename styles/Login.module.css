@@ -1,10 +1,5 @@
 /* styles/Login.module.css */
 
-/* Global styles */
-:global(html) {
-  font-family: 'Inter', sans-serif;
-}
-
 /* General container for all pages */
 .container {
   display: flex;
@@ -12,18 +7,12 @@
   align-items: center;
   padding: 40px 20px;
   min-height: 100vh;
-<<<<<<< HEAD
   background-color: #0f111a;
   color: #e0e0e0;
-=======
-  background-color: #0f111a; /* Darker background for a modern look */
-  color: #e0e0e0; /* Softer white for text */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
 }
 
 /* Card container */
 .card {
-<<<<<<< HEAD
   background: linear-gradient(145deg, #1a1e2e, #1e2235);
   padding: 32px;
   border-radius: 20px;
@@ -31,26 +20,12 @@
   width: 100%;
   max-width: 400px;
   border: none;
-=======
-  background: linear-gradient(145deg, #1a1e2e, #1e2235); /* Subtle gradient for a sleek look */
-  padding: 32px;
-  border-radius: 20px; /* More rounded corners */
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Softer shadow */
-  width: 100%;
-  max-width: 400px;
-  border: none; /* Remove border for a cleaner look */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .card:hover {
-<<<<<<< HEAD
   transform: translateY(-5px);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-=======
-  transform: translateY(-5px); /* Subtle lift on hover */
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
 }
 
 /* Dashboard header with logo and logout */
@@ -79,17 +54,10 @@
 /* Title for dashboard and login/register */
 .title {
   color: #ffffff;
-<<<<<<< HEAD
   font-size: 32px;
   font-weight: 700;
   margin: 0;
   text-align: center;
-=======
-  font-size: 32px; /* Slightly larger for emphasis */
-  font-weight: 700;
-  margin: 0;
-  text-align: center; /* Center the title */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
 }
 
 /* Section titles */
@@ -104,11 +72,7 @@
 /* Action bar with add button (search removed) */
 .actionBar {
   display: flex;
-<<<<<<< HEAD
   justify-content: flex-end;
-=======
-  justify-content: flex-end; /* Align "Add Password" button to the right */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
   align-items: center;
   margin-bottom: 10px;
 }
@@ -118,11 +82,7 @@
   display: flex;
   align-items: center;
   padding: 10px 16px;
-<<<<<<< HEAD
   background: linear-gradient(90deg, #7b3fe4, #9b6bff);
-=======
-  background: linear-gradient(90deg, #7b3fe4, #9b6bff); /* Gradient for a modern look */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -134,11 +94,7 @@
 }
 
 .addButton:hover {
-<<<<<<< HEAD
   background: linear-gradient(90deg, #9b6bff, #7b3fe4);
-=======
-  background: linear-gradient(90deg, #9b6bff, #7b3fe4); /* Reverse gradient on hover */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
   transform: translateY(-2px);
 }
 
@@ -363,11 +319,7 @@
 }
 
 .iconCircle {
-<<<<<<< HEAD
   background: linear-gradient(90deg, #7b3fe4, #9b6bff);
-=======
-  background: linear-gradient(90deg, #7b3fe4, #9b6bff); /* Gradient for the icon circle */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
   border-radius: 50%;
   width: 60px;
   height: 60px;
@@ -378,11 +330,7 @@
 }
 
 .iconCircle:hover {
-<<<<<<< HEAD
   transform: scale(1.1);
-=======
-  transform: scale(1.1); /* Slight scale on hover */
->>>>>>> d56a8d30a571777bcd62b121966ff0b1b7d4ff1f
 }
 
 .subtitle {
