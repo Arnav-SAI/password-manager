@@ -1,5 +1,10 @@
 /* styles/Login.module.css */
 
+/* Global styles */
+:global(html) {
+  font-family: 'Inter', sans-serif;
+}
+
 /* General container for all pages */
 .container {
   display: flex;
@@ -7,19 +12,25 @@
   align-items: center;
   padding: 40px 20px;
   min-height: 100vh;
-  background-color: #171923;
-  color: #ffffff;
+  background-color: #0f111a; /* Darker background for a modern look */
+  color: #e0e0e0; /* Softer white for text */
 }
 
 /* Card container */
 .card {
-  background-color: #1e2235;
-  padding: 30px;
-  border-radius: 16px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  background: linear-gradient(145deg, #1a1e2e, #1e2235); /* Subtle gradient for a sleek look */
+  padding: 32px;
+  border-radius: 20px; /* More rounded corners */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* Softer shadow */
   width: 100%;
-  max-width: 400px; /* Default for login, register, and /dashboard/add */
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-width: 400px;
+  border: none; /* Remove border for a cleaner look */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px); /* Subtle lift on hover */
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 /* Dashboard header with logo and logout */
@@ -48,12 +59,10 @@
 /* Title for dashboard and login/register */
 .title {
   color: #ffffff;
-  font-size: 28px;
+  font-size: 32px; /* Slightly larger for emphasis */
   font-weight: 700;
   margin: 0;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  text-align: center; /* Center the title */
 }
 
 /* Section titles */
@@ -65,40 +74,12 @@
   margin-bottom: 20px;
 }
 
-/* Action bar with search and add button */
+/* Action bar with add button (search removed) */
 .actionBar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end; /* Align "Add Password" button to the right */
   align-items: center;
   margin-bottom: 10px;
-}
-
-/* Search container and input */
-.searchContainer {
-  position: relative;
-  width: 50%;
-}
-
-.searchInput {
-  width: 100%;
-  padding: 10px 12px 10px 36px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.05);
-  color: #ffffff;
-  font-size: 14px;
-  transition: all 0.2s ease;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: #9061f9;
-  background-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
-}
-
-.searchInput::placeholder {
-  color: rgba(255, 255, 255, 0.4);
 }
 
 /* Add button */
@@ -106,7 +87,7 @@
   display: flex;
   align-items: center;
   padding: 10px 16px;
-  background-color: #7b3fe4;
+  background: linear-gradient(90deg, #7b3fe4, #9b6bff); /* Gradient for a modern look */
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -114,12 +95,12 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .addButton:hover {
-  background-color: #9061f9;
-  transform: translateY(-1px);
+  background: linear-gradient(90deg, #9b6bff, #7b3fe4); /* Reverse gradient on hover */
+  transform: translateY(-2px);
 }
 
 /* Logout button */
@@ -127,26 +108,27 @@
   display: flex;
   align-items: center;
   padding: 8px 16px;
-  background-color: rgba(255, 255, 255, 0.07);
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .logoutButton:hover {
-  background-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 /* Saved Passwords box */
 .savedPasswordsBox {
-  background-color: #262b3d;
+  background: #1e2235;
   padding: 24px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
@@ -173,7 +155,7 @@
 }
 
 .passwordTable th {
-  background-color: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
   color: rgba(255, 255, 255, 0.7);
   font-weight: 600;
   font-size: 14px;
@@ -182,7 +164,7 @@
 }
 
 .passwordTable td {
-  color: #ffffff;
+  color: #e0e0e0;
 }
 
 .passwordTable tr:last-child td {
@@ -190,7 +172,7 @@
 }
 
 .passwordTable tr:hover {
-  background-color: rgba(255, 255, 255, 0.03);
+  background: rgba(255, 255, 255, 0.03);
 }
 
 /* Website cell with favicon */
@@ -205,7 +187,7 @@
   justify-content: center;
   width: 28px;
   height: 28px;
-  background-color: #7b3fe4;
+  background: #7b3fe4;
   color: white;
   border-radius: 6px;
   margin-right: 12px;
@@ -234,7 +216,7 @@
 
 .visibilityToggle:hover {
   color: rgba(255, 255, 255, 0.8);
-  background-color: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 /* Action buttons */
@@ -258,7 +240,7 @@
 
 .actionButton:hover {
   color: rgba(255, 255, 255, 0.9);
-  background-color: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Empty state when no passwords */
@@ -277,7 +259,7 @@
   align-items: center;
   margin-top: 20px;
   padding: 10px 16px;
-  background-color: #7b3fe4;
+  background: linear-gradient(90deg, #7b3fe4, #9b6bff);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -285,19 +267,19 @@
   font-weight: 600;
   cursor: pointer;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .emptyStateButton:hover {
-  background-color: #9061f9;
+  background: linear-gradient(90deg, #9b6bff, #7b3fe4);
 }
 
 /* Security tips box */
 .securityInfoBox {
-  background-color: #262b3d;
+  background: #1e2235;
   padding: 20px;
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
@@ -327,7 +309,7 @@
 /* Error messages */
 .error {
   color: #ff4d4d;
-  background-color: rgba(255, 77, 77, 0.1);
+  background: rgba(255, 77, 77, 0.1);
   padding: 12px;
   border-radius: 8px;
   margin-bottom: 16px;
@@ -338,23 +320,29 @@
 .icon {
   display: flex;
   justify-content: center;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .iconCircle {
-  background-color: #7b3fe4;
+  background: linear-gradient(90deg, #7b3fe4, #9b6bff); /* Gradient for the icon circle */
   border-radius: 50%;
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.iconCircle:hover {
+  transform: scale(1.1); /* Slight scale on hover */
 }
 
 .subtitle {
   text-align: center;
   color: #a0a5b0;
   font-size: 14px;
+  font-weight: 400;
   margin-bottom: 24px;
 }
 
@@ -364,7 +352,7 @@
 
 .label {
   display: block;
-  color: #ffffff;
+  color: #e0e0e0;
   font-size: 14px;
   font-weight: 500;
   margin-bottom: 8px;
@@ -373,12 +361,19 @@
 .input {
   width: 100%;
   padding: 10px 12px;
-  border: 1px solid #4a4f5b;
-  border-radius: 5px;
-  background-color: #3a3f4b;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
   color: #ffffff;
   font-size: 14px;
   box-sizing: border-box;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #7b3fe4;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .input::placeholder {
@@ -395,7 +390,7 @@
 .checkbox {
   display: flex;
   align-items: center;
-  color: #ffffff;
+  color: #e0e0e0;
   font-size: 14px;
 }
 
@@ -407,26 +402,29 @@
   color: #7b3fe4;
   text-decoration: none;
   font-size: 14px;
+  transition: color 0.3s ease;
 }
 
 .link:hover {
-  text-decoration: underline;
+  color: #9b6bff;
 }
 
 .button {
   width: 100%;
   padding: 12px;
-  background-color: #7b3fe4;
+  background: linear-gradient(90deg, #7b3fe4, #9b6bff);
   color: #ffffff;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .button:hover {
-  background-color: #9b6bff;
+  background: linear-gradient(90deg, #9b6bff, #7b3fe4);
+  transform: translateY(-2px);
 }
 
 .footer {
@@ -439,243 +437,219 @@
 .footerLink {
   color: #7b3fe4;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 .footerLink:hover {
-  text-decoration: underline;
+  color: #9b6bff;
 }
 
 .navButton {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #4a4f5b;
-  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: 8px;
   font-size: 14px;
   margin: 10px 0;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .navButton:hover {
-  background-color: #5a5f6b;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .addPasswordBox {
-  background-color: #3a3f4b;
+  background: rgba(255, 255, 255, 0.05);
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive adjustments for mobile */
 @media (max-width: 768px) {
-  /* General container adjustments */
   .container {
-    padding: 20px 10px; /* Reduce padding on mobile */
+    padding: 20px 10px;
   }
 
-  /* Card adjustments */
   .card {
-    padding: 20px; /* Reduce padding inside the card */
-    border-radius: 12px; /* Slightly smaller border radius */
-    max-width: 100%; /* Ensure it takes full width on very small screens */
-    margin: 0 10px; /* Add small margin on the sides */
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 100%;
+    margin: 0 10px;
   }
 
-  /* Title adjustments */
   .title {
-    font-size: 24px; /* Slightly smaller title */
+    font-size: 24px;
   }
 
-  /* Subtitle adjustments */
   .subtitle {
-    font-size: 12px; /* Smaller subtitle */
+    font-size: 12px;
     margin-bottom: 16px;
   }
 
-  /* Form group adjustments */
   .formGroup {
-    margin-bottom: 12px; /* Reduce spacing between form fields */
+    margin-bottom: 12px;
   }
 
-  /* Label adjustments */
   .label {
-    font-size: 13px; /* Smaller label text */
+    font-size: 13px;
   }
 
-  /* Input adjustments */
   .input {
-    padding: 8px 10px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
+    padding: 8px 10px;
+    font-size: 13px;
     border-radius: 4px;
   }
 
-  /* Options (checkbox and link) adjustments */
   .options {
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-direction: column;
     align-items: flex-start;
-    gap: 12px; /* Add spacing between checkbox and link */
+    gap: 12px;
     margin-bottom: 16px;
   }
 
   .checkbox,
   .link {
-    font-size: 13px; /* Smaller text */
-    padding: 8px 0; /* Add padding for better touch target */
+    font-size: 13px;
+    padding: 8px 0;
   }
 
-  /* Button adjustments */
   .button {
-    padding: 10px; /* Slightly smaller padding */
-    font-size: 14px; /* Smaller font size */
+    padding: 10px;
+    font-size: 14px;
     border-radius: 4px;
   }
 
-  /* Footer adjustments */
   .footer {
-    font-size: 12px; /* Smaller footer text */
+    font-size: 12px;
     margin-top: 16px;
   }
 
-  /* Dashboard-specific adjustments */
   .dashboardHeader {
-    flex-direction: column; /* Stack header elements vertically */
-    gap: 12px; /* Add spacing between logo and logout button */
+    flex-direction: column;
+    gap: 12px;
     margin-bottom: 20px;
     padding-bottom: 16px;
   }
 
   .actionBar {
-    flex-direction: column; /* Already set, but confirming */
-    gap: 12px; /* Already set, but confirming */
-  }
-
-  .searchContainer {
-    width: 100%; /* Already set, but confirming */
-  }
-
-  .searchInput {
-    padding: 8px 10px 8px 32px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
-  }
-
-  .searchInput + svg {
-    top: 8px; /* Adjust search icon position */
-    left: 8px;
+    flex-direction: column;
+    gap: 12px;
   }
 
   .addButton {
-    width: 100%; /* Already set, but confirming */
-    justify-content: center; /* Already set, but confirming */
-    padding: 10px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 13px;
   }
 
   .logoutButton {
-    padding: 8px 12px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
+    padding: 8px 12px;
+    font-size: 13px;
   }
 
   .sectionTitle {
-    font-size: 18px; /* Smaller section title */
+    font-size: 18px;
     margin-bottom: 16px;
   }
 
   .savedPasswordsBox {
-    padding: 16px; /* Reduce padding */
+    padding: 16px;
   }
 
   .passwordTable {
-    font-size: 13px; /* Smaller font size for table */
+    font-size: 13px;
   }
 
   .passwordTable th,
   .passwordTable td {
-    padding: 10px; /* Reduce padding in table cells */
+    padding: 10px;
   }
 
   .favicon {
-    width: 24px; /* Smaller favicon */
+    width: 24px;
     height: 24px;
     font-size: 12px;
     margin-right: 8px;
   }
 
   .visibilityToggle {
-    padding: 4px; /* Ensure touch target is large enough */
+    padding: 4px;
   }
 
   .actionButton {
-    padding: 6px; /* Ensure touch target is large enough */
+    padding: 6px;
   }
 
   .emptyState {
-    padding: 20px 10px; /* Reduce padding */
+    padding: 20px 10px;
   }
 
   .emptyStateButton {
-    padding: 8px 12px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
+    padding: 8px 12px;
+    font-size: 13px;
   }
 
   .securityInfoBox {
-    padding: 16px; /* Reduce padding */
+    padding: 16px;
   }
 
   .securityHeader h4 {
-    font-size: 16px; /* Smaller header */
+    font-size: 16px;
   }
 
   .securityTips li {
-    font-size: 13px; /* Smaller text */
+    font-size: 13px;
     margin-bottom: 6px;
   }
 
-  /* Add Password page adjustments */
   .navButton {
-    padding: 8px 16px; /* Slightly smaller padding */
-    font-size: 13px; /* Smaller font size */
-    margin: 8px 0; /* Adjust margin */
+    padding: 8px 16px;
+    font-size: 13px;
+    margin: 8px 0;
   }
 
   .addPasswordBox {
-    padding: 16px; /* Reduce padding */
+    padding: 16px;
   }
 }
 
-/* Additional media query for very small screens (e.g., < 480px) */
 @media (max-width: 480px) {
   .container {
-    padding: 15px 5px; /* Further reduce padding */
+    padding: 15px 5px;
   }
 
   .card {
-    padding: 15px; /* Further reduce padding */
+    padding: 15px;
     margin: 0 5px;
   }
 
   .title {
-    font-size: 20px; /* Even smaller title */
+    font-size: 20px;
   }
 
   .subtitle {
-    font-size: 11px; /* Even smaller subtitle */
+    font-size: 11px;
   }
 
   .input {
-    padding: 6px 8px; /* Even smaller padding */
-    font-size: 12px; /* Even smaller font size */
+    padding: 6px 8px;
+    font-size: 12px;
   }
 
   .button {
-    padding: 8px; /* Even smaller padding */
-    font-size: 13px; /* Even smaller font size */
+    padding: 8px;
+    font-size: 13px;
   }
 
   .passwordTable th,
   .passwordTable td {
-    padding: 8px; /* Further reduce padding */
-    font-size: 12px; /* Even smaller font size */
+    padding: 8px;
+    font-size: 12px;
   }
 }
