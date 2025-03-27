@@ -29,4 +29,3 @@ Follow these steps to set up the Password Manager locally.
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/arnav-sai/password-manager.git
-   cd password-manager
