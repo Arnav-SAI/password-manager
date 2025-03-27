@@ -7,6 +7,7 @@ import Link from 'next/link';
 function Dashboard() {
   const [passwords, setPasswords] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visiblePasswords, setVisiblePasswords] = useState({}); // State to track visibility of each password
   const router = useRouter();
 
   useEffect(() => {
@@ -29,6 +30,12 @@ function Dashboard() {
       console.error('Error fetching passwords:', error);
     } else {
       setPasswords(data);
+      // Initialize visibility state for each password as hidden
+      const initialVisibility = {};
+      data.forEach((password) => {
+        initialVisibility[password.id] = false;
+      });
+      setVisiblePasswords(initialVisibility);
     }
     setLoading(false);
   };
@@ -50,6 +57,12 @@ function Dashboard() {
       console.error('Error deleting password:', error);
     } else {
       setPasswords(passwords.filter((password) => password.id !== id));
+      // Remove the visibility state for the deleted password
+      setVisiblePasswords((prev) => {
+        const newVisibility = { ...prev };
+        delete newVisibility[id];
+        return newVisibility;
+      });
     }
   };
 
@@ -58,16 +71,24 @@ function Dashboard() {
     router.push('/');
   };
 
+  // Toggle password visibility for a specific password
+  const togglePasswordVisibility = (id) => {
+    setVisiblePasswords((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.card} style={{ maxWidth: '1200px' }}>
+      <div className={styles.card} style={{ maxWidth: '800px' }}>
         <div className={styles.dashboardHeader}>
           <div className={styles.headerLeft}>
-            <h2 className={styles.title}>Password Manager</h2>
+            <h2 className={styles.logo}>Password Manager</h2>
           </div>
           <div className={styles.headerRight}>
             <button onClick={handleLogout} className={styles.logoutButton}>
@@ -118,8 +139,15 @@ function Dashboard() {
                           <td>{password.username}</td>
                           <td>
                             <div className={styles.passwordCell}>
-                              ••••••••
-                              <button className={styles.visibilityToggle}>
+                              {visiblePasswords[password.id] ? (
+                                password.password
+                              ) : (
+                                '••••••••'
+                              )}
+                              <button
+                                onClick={() => togglePasswordVisibility(password.id)}
+                                className={styles.visibilityToggle}
+                              >
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="16"
@@ -131,8 +159,19 @@ function Dashboard() {
                                   strokeLinecap="round"
                                   strokeLinejoin="round"
                                 >
-                                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                                  <circle cx="12" cy="12" r="3"></circle>
+                                  {visiblePasswords[password.id] ? (
+                                    // Eye-off icon (when password is visible)
+                                    <>
+                                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                                      <line x1="1" y1="1" x2="23" y2="23"></line>
+                                    </>
+                                  ) : (
+                                    // Eye icon (when password is hidden)
+                                    <>
+                                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                      <circle cx="12" cy="12" r="3"></circle>
+                                    </>
+                                  )}
                                 </svg>
                               </button>
                             </div>
