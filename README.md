@@ -1,4 +1,4 @@
-# Password Manager
+#🔐Password Manager
 
 A secure and user-friendly Password Manager built with Next.js and Supabase. This application allows users to store, manage, and retrieve their passwords securely, with a modern and minimal user interface.
 
